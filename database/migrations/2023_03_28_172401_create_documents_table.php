@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->primary('id');
             $table->timestamps();
-            $table->bigInteger('category_id');
+            $table->uuid('category_id');
+            $table->int('exercice');
             $table->string('title', 60);
             $table->text('contents');
 
