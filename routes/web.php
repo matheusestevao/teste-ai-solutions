@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportDocumentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ImportDocumentController::class, 'import_document'])->name('import_document');
+Route::post('read_document', [ImportDocumentController::class, 'read_document'])->name('read_document');
+Route::post('exec_job', [ImportDocumentController::class, 'exec_job'])->name('exec_job');
