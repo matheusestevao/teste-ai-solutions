@@ -33,6 +33,6 @@ class JsonFileTest extends TestCase
             'queue' => 'file_exercice'
         ]);
 
-        $response->assertRedirectToRoute('exec_job');
+        $response->assertRedirectToRoute('import_document');
     }
 }

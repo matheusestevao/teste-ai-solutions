@@ -22,7 +22,7 @@ class ImportDocumentController extends Controller
         try {
             $file = $request->file('file');
             
-            if(!$file || $file->isValid()) {
+            if(!$file || !$file->isValid()) {
                 throw new \Exception('Arquivo Inválido.');
             }
 
@@ -87,13 +87,13 @@ class ImportDocumentController extends Controller
             }
 
             return redirect()
-                        ->route('exec_job')
+                        ->route('import_document')
                         ->with('success', 'Fila processada com sucesso.');
         } catch (\Throwable $th) {
             Helper::store_error_log($th);
 
             return redirect()
-                        ->route('exec_job')
+                        ->route('import_document')
                         ->with('error', 'Não foi possível processar as informações. Favor, revise o arquivo e tente novamente.');
         }
     }
