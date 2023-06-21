@@ -11,19 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('manual_jobs', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
             $table->timestamps();
-            $table->uuid('category_id');
-            $table->integer('exercice');
-            $table->string('title', 60);
-            $table->text('contents');
-
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
+            $table->string('queue', 50);
+            $table->json('data', 255);
         });
     }
 
@@ -32,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('manual_jobs');
     }
 };
